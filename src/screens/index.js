@@ -1,0 +1,10 @@
+import Home from './Home';
+import List from './List';
+import Chat from './Chat';
+import PloggingScreen from './PloggingScreen';
+import SettingScreen from './SettingSreen';
+import MyPageScreen from './MyPageScreen';
+import FeedScreen from './FeedScreen';
+import FriendScreen from './FriendScreen';
+import RecordScreen from './RecordScreen';
+export {Home,List,Chat,PloggingScreen,SettingScreen,MyPageScreen,FeedScreen,FriendScreen,RecordScreen};
