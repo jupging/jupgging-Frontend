@@ -1,12 +1,13 @@
 import React from "react"; 
 import { NavigationContainer } from "@react-navigation/native"; 
-import StackNav from "./Stack";
-import DrawerNav from "./Drawer";
+import MainStackNav from "./MainStackNav";
 
 const Navigation=()=>{
-return (<NavigationContainer>
-    <DrawerNav/>
-  </NavigationContainer>)
+return (
+<NavigationContainer>
+    <MainStackNav/>
+  </NavigationContainer>
+  )
 }
 
 export default Navigation;

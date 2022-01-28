@@ -1,31 +1,26 @@
 import 'react-native-gesture-handler';
 import React, {createContext} from 'react';
-import {View,Text} from 'react-native';
+import { NativeBaseProvider, extendTheme } from "native-base";
 import styled from 'styled-components/native';
-import { NavigationContainer } from '@react-navigation/native';
-import StackNav from './Navigations/Stack';
-import DrawerNav from './Navigations/Drawer';
 
+import Navigation from './Navigations';
 
-const Container = styled.View`
-      flex: 1;
-      alignItems: center;
-      justifyContent: center;
-  
-`;
+const newColorTheme = {
+    brand: {
+      900: '#8287af',
+      800: '#7c83db',
+      700: '#b3bef6',
+    },
+  };
+  const theme = extendTheme({ colors: newColorTheme });
 
-const  StyledText=styled.Text`
-font-size: 30px;
-font-weight: 600;
-`;
 
 function App() {
 
   return (
-  <NavigationContainer>
-      <DrawerNav/>
-</NavigationContainer>
-   
+    <NativeBaseProvider theme={theme}>
+    <Navigation/>
+    </NativeBaseProvider>
  
   );
 }

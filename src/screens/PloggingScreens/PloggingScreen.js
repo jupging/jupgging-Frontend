@@ -1,6 +1,6 @@
 import React from "react";
 import styled from 'styled-components/native'
-
+import {View, Text, Card, Button} from 'react-native-ui-lib';
 const Container = styled.View`
 flex : 1;
 justify-content : center;
@@ -13,12 +13,12 @@ font-size : 30px;
 margin : 10px;
 `;
 
-const FeedScreen = ({navigation})=>{
+const PloggingScreen = ({navigation})=>{
 
     return <Container>
-        <StyledText>FeedScreen</StyledText>
+        <StyledText>PloggingScreen</StyledText>
         
         </Container>
 }
 
-export default FeedScreen;
+export default PloggingScreen;

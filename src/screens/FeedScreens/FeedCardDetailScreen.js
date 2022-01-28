@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import styled from 'styled-components/native'
 
 const Container = styled.View`
@@ -13,12 +13,8 @@ font-size : 30px;
 margin : 10px;
 `;
 
-const FriendScreen = ({navigation})=>{
-
-    return <Container>
-        <StyledText>FriendScreen</StyledText>
-        
-        </Container>
+function FeedCardDetailScreen({route,navigation}) {
+  return <Container><StyledText>FeedCardDetailScreen</StyledText></Container>;
 }
 
-export default FriendScreen;
+export default FeedCardDetailScreen;

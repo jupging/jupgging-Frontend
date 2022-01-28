@@ -1,4 +1,5 @@
 import React from "react";
+import { Image } from "react-native";
 import styled from 'styled-components/native'
 
 const Container = styled.View`
@@ -15,10 +16,12 @@ margin : 10px;
 
 const MyPageScreen = ({navigation})=>{
 
-    return <Container>
+
+    return( <Container>
         <StyledText>MyPageScreen</StyledText>
         
         </Container>
+    )
 }
 
 export default MyPageScreen;

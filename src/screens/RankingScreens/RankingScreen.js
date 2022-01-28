@@ -1,6 +1,7 @@
 import React from "react";
 import styled from 'styled-components/native'
 
+
 const Container = styled.View`
 flex : 1;
 justify-content : center;
@@ -13,12 +14,15 @@ font-size : 30px;
 margin : 10px;
 `;
 
-const PloggingScreen = ({navigation})=>{
+const RankingScreen = ({navigation})=>{
 
+    const getContact=()=>{
+        this.req
+    }
     return <Container>
-        <StyledText>PloggingScreen</StyledText>
+        <StyledText>RankingScreen</StyledText>
         
         </Container>
 }
 
-export default PloggingScreen;
+export default RankingScreen;
