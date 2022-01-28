@@ -4,8 +4,8 @@ import {
     DrawerItemList,
     DrawerItem } from '@react-navigation/drawer';
 import React from "react";
-import {PloggingScreen,SettingScreen,MyPageScreen,FeedScreen,RecordScreen,RankingScreen,ChallengeScreen} from '../screens'; /*폴더까지만 입력하면 폴더 아래에 있는 index.js 파일을 가져옴 */
-import {  FontAwesome,MaterialIcons,FontAwesome5,Ionicons } from '@expo/vector-icons';
+import {PloggingScreen,SettingScreen,MyPageScreen,FeedScreen,RecordScreen,RankingScreen,ChallengeScreen,StoreScreen} from '../screens'; /*폴더까지만 입력하면 폴더 아래에 있는 index.js 파일을 가져옴 */
+import { MaterialIcons,FontAwesome5,Ionicons } from '@expo/vector-icons';
 import styled from 'styled-components/native';
 import Avatar from '../components/ProfileAvatar';
 
@@ -68,6 +68,7 @@ const HomeNav = ()=>{
             <Drawer.Screen name='Record' component={RecordScreen} options={{ drawerLabel: '기록' ,drawerIcon: ({focused})=><Ionicons name="bar-chart-sharp" size={24} color={focused?'black':'#dddddd'} />}}/>
             <Drawer.Screen name='Challenge' component={ChallengeScreen} options={{ drawerLabel: '챌린지' ,drawerIcon: ({focused})=><Ionicons name="trophy-sharp" size={24} color={focused?'black':'#dddddd'} />}}/>
             <Drawer.Screen name='Rank' component={RankingScreen} options={{ drawerLabel: '순위' ,drawerIcon: ({focused})=><Ionicons name="people-circle-outline" size={24} color={focused?'black':'#dddddd'} />}}/>
+            <Drawer.Screen name='Store' component={StoreScreen} options={{ drawerLabel: '상점' ,drawerIcon: ({focused})=><FontAwesome5 name="store" size={19} color={focused?'black':'#dddddd'} />}}/>
             <Drawer.Screen name='Setting' component={SettingScreen} options={{ drawerLabel: '설정' ,drawerIcon: ({focused})=><Ionicons name="settings-sharp" size={24} color={focused?'black':'#dddddd'} />}}/>
     
         </Drawer.Navigator>

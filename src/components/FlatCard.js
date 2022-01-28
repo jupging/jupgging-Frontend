@@ -3,6 +3,8 @@ import styled from 'styled-components/native';
 import { StyleSheet,View,Text,Image,TouchableOpacity } from 'react-native';
 import CardNewsImages from '../images/CardNewsImage';
 import Avatar from './ProfileAvatar';
+import Layout from "../constants/Layout";
+import Colors from "../constants/Colors";
 
 const Container = styled.View`
 flex : 1;
@@ -34,7 +36,8 @@ max-height : 100;
 function FlatCard({item}) {
     const {thumbnail,title,desc}=item;
   return <Container>
-     <Image source={CardNewsImages[0]} alt="환경" style={styles.image}/>
+      <Image style={styles.image} source={{  uri: thumbnail}}/>
+   
       <View style={styles.conntentContainer}> 
       <TouchableOpacity>
       <Title>{title}</Title>
@@ -46,6 +49,7 @@ function FlatCard({item}) {
   </Container>;
 }
 
+
 const styles = StyleSheet.create({
     image:{
         flex : 0.35,
@@ -56,6 +60,7 @@ const styles = StyleSheet.create({
         flex: 0.65,
         paddingHorizontal: 20,
         paddingVertical:20,
+    
     }
 });
 export default FlatCard;

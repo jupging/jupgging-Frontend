@@ -28,6 +28,7 @@
     "react-native-svg": "12.1.1",
     "react-native-ui-lib": "^6.8.1",
     "react-native-web": "0.17.1",
+    "react-navigation": "^4.4.4",
     "styled-components": "^5.3.3"
   },
   "devDependencies": {

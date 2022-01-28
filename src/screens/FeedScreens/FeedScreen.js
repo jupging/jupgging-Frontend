@@ -17,7 +17,7 @@ const StyledText = styled.Text`
 font-size : 30px;
 margin : 10px;
 align-self:flex-start;
-marginLeft : 20px
+margin-left : 20px
 `;
 function FeedScreen({route,navigation}) {
 
@@ -39,13 +39,13 @@ const data = [{
   author :author,
   authorImage: undefined,
 },{
-  thumbnail:"https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+  thumbnail:"https://file.mk.co.kr/meet/neds/2021/07/image_readtop_2021_725092_16275204934731103.jpg",
   title: title,
   desc: desc,
   author :author,
   authorImage: undefined,
 },{
-  thumbnail:"https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+  thumbnail:"http://cdn.bosa.co.kr/news/photo/202201/2167458_198913_1851.png",
   title: title,
   desc: desc,
   author :author,
@@ -55,7 +55,7 @@ const data = [{
     <ScrollView>
     <MyCarousel/>
     <StyledText>플로깅 뉴스</StyledText>
-    {data.map((item,idx)=><FlatCard item={item}/>)}
+    {data.map((item,idx)=><FlatCard key={idx} item={item}/>)}
   
     </ScrollView>
         </Container>);

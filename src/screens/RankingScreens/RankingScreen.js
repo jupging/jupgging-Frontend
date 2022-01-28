@@ -1,27 +1,26 @@
 import React from "react";
 import styled from 'styled-components/native'
-
+import Podium from '../../components/Podium'
 
 const Container = styled.View`
 flex : 1;
-justify-content : center;
-align-items : center;
+
+
 
 `
 
 const StyledText = styled.Text`
 font-size : 30px;
 margin : 10px;
+font-weight: bold;
+text-align : center;
 `;
 
 const RankingScreen = ({navigation})=>{
 
-    const getContact=()=>{
-        this.req
-    }
     return <Container>
-        <StyledText>RankingScreen</StyledText>
-        
+        <StyledText>내가 바로 지구 지킴이🌍</StyledText>
+        <Podium/>
         </Container>
 }
 
