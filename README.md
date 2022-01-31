@@ -1,8 +1,7 @@
 # jupgging-Frontend
 GDSC Winter Hack - Plogging Application jupgging Front 
 
-
-![image](https://user-images.githubusercontent.com/86418674/151739009-92777496-70b0-414b-8a5b-c92493bd94dd.png)
+![image](https://user-images.githubusercontent.com/86418674/151849069-d509b07c-68f5-4dde-abda-d2c10301ec4c.png)
 
 
 # Navigation 설계
