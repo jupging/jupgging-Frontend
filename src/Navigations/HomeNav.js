@@ -8,7 +8,7 @@ import {PloggingScreen,SettingScreen,MyPageScreen,FeedScreen,RecordScreen,Rankin
 import { MaterialIcons,FontAwesome5,Ionicons } from '@expo/vector-icons';
 import styled from 'styled-components/native';
 import Avatar from '../components/ProfileAvatar';
-
+import { TouchableOpacity } from 'react-native';
 const Drawer = createDrawerNavigator();
 
 
@@ -36,9 +36,12 @@ const HomeNav = ()=>{
         return(
           
             <DrawerContentScrollView {...props}>
+                <TouchableOpacity onPress={()=>props.navigation.navigate('MyPage')}>
             <Avatar/>
+            </TouchableOpacity>
+         
                <StyledText>{userName?userName:'GUEST'}</StyledText>
-
+              
                 <DrawerItemList {...props} /* 기존 drawer list 들 *//>
             </DrawerContentScrollView>
         )
@@ -56,7 +59,7 @@ const HomeNav = ()=>{
         drawerContent={props => <CustomDrawerContent {...props}/>}/*렌더링 할 요소 반환 */
         
         >
-        
+          <Drawer.Screen name='MyPage' component={MyPageScreen} options={{  drawerLabel: '마이페이지' ,drawerIcon: ({focused})=><Ionicons name="person-circle" size={24} color={focused?'black':'#dddddd'} />,drawerItemStyle:{display:'none'}}}/>
             <Drawer.Screen name='Plogging' component={PloggingScreen} options={{ drawerLabel: '플로깅(러닝)', drawerIcon: ({focused})=> <FontAwesome5 name="running" size={24} color={focused?'black':'#dddddd'}/> }}/>
             <Drawer.Screen name='Feed' component={FeedScreen} 
                 options={({route,navigation})=>({ 
