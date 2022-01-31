@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image } from 'react-native'
-function MySlideComponent({data}) {
+function MySlide({data}) {
   return  <Image
  style={{backgroundColor:'red'}}
   source={{
@@ -9,4 +9,4 @@ function MySlideComponent({data}) {
 />;
 }
 
-export default MySlideComponent;
+export default Slide;

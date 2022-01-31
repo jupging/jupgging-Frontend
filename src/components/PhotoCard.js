@@ -4,7 +4,7 @@ import {View, Text,Image} from 'react-native-ui-lib';
 import {Box,AspectRatio,Center,Stack,HStack,Heading} from 'native-base';
 
 
-const CardNews = ()=>{
+const PhotoCard = ()=>{
 
     return <View flex padding-page>
     <Box alignItems="center">
@@ -65,4 +65,4 @@ const CardNews = ()=>{
   </View>
 }
 
-export default CardNews;
+export default PhotoCard;

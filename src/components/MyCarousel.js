@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import {View,Image,Dimensions} from 'react-native';
+import {View,Image,Dimensions,Text,ScrollView} from 'react-native';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import CardNewsImages from '../images/CardNewsImage';
 
@@ -15,7 +15,7 @@ import CardNewsImages from '../images/CardNewsImage';
      
      }
     _renderItem ({item, index}) {
-        return <Image source={item} style={{width:300,height:300}}/>
+        return <Image source={item} style={{width:300,height:300,alignSelf:'center'}}/>
     }
 
     get pagination () {
@@ -25,8 +25,8 @@ import CardNewsImages from '../images/CardNewsImage';
             <Pagination
               dotsLength={entries.length}
               activeDotIndex={activeSlide}
-              containerStyle={{ backgroundColor: 'rgba(0, 0, 0, 1)' ,
-            position: 'absolute', top:250,alignSelf:'center'}}
+              containerStyle={{ 
+         }}
               dotStyle={{
                   width: 10,
                   height: 10,
@@ -38,6 +38,7 @@ import CardNewsImages from '../images/CardNewsImage';
               }}
               inactiveDotStyle={{
                   // Define styles for inactive dots here
+                  backgroundColor:'black'
               }}
               inactiveDotOpacity={0.4}
               inactiveDotScale={0.6}
@@ -55,26 +56,25 @@ import CardNewsImages from '../images/CardNewsImage';
 
         return (
             <View >
+ 
                 <Carousel
                   data={this.state.entries}
                   renderItem={this._renderItem}
                   onSnapToItem={(index) => this.setState({ activeSlide: index }) }
                   windowSize={21}
                   sliderWidth={width}
-                  sliderHeight={100}
-                  itemHeight={250}
+                  sliderHeight={300}
+                  itemHeight={300}
                   itemWidth={250}
-                  autoplay={false}
+                  autoplay={true}
                   loopClonesPerSide={3}
                   enableMomentum={false}
                   lockScrollWhileSnapping={true}
                   activeSlideAlignment='center'
-                  containerCustomStyle={{marginRight:80,marginLeft:70}}
-                  contentContainerCustomStyle={{}}
-                  
+                  style={{margin:0,padding:0}}
 
                 />
-                { this.pagination }
+               { this.pagination }
             </View>
         );
     }
