@@ -16,11 +16,14 @@
     "@react-navigation/stack": "^6.0.11",
     "expo": "~44.0.0",
     "expo-status-bar": "~1.2.0",
+    "lottie-react-native": "5.0.1",
     "native-base": "^3.3.4",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
     "react-native-gesture-handler": "~2.1.0",
+    "react-native-progress": "^5.0.0",
+    "react-native-radio-buttons-group": "^2.2.10",
     "react-native-reanimated": "~2.3.1",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.10.2",
@@ -30,7 +33,7 @@
     "react-native-web": "0.17.1",
     "react-navigation": "^4.4.4",
     "styled-components": "^5.3.3",
-    "lottie-react-native": "5.0.1"
+    "expo-image-picker": "~12.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

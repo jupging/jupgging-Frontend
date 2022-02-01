@@ -37,7 +37,7 @@ const HomeNav = ()=>{
           
             <DrawerContentScrollView {...props}>
                 <TouchableOpacity onPress={()=>props.navigation.navigate('MyPage')}>
-            <Avatar/>
+            <Avatar size='lg'/>
             </TouchableOpacity>
          
                <StyledText>{userName?userName:'GUEST'}</StyledText>

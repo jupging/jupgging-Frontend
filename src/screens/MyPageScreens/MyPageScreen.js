@@ -1,11 +1,12 @@
 import React from "react";
-import { Image,View,ScrollView} from "react-native";
+import { Image,View,ScrollView,Button} from "react-native";
 import styled from 'styled-components/native'
 import ProfileAvatar from "../../components/ProfileAvatar";
-import {Button} from 'native-base';
+
 import ChallengeAcheiveCard from "../../components/ChallengeAcheiveCard";
 import ChallengeList from "../../constants/ChallengeList";
 import LevelCard from "../../components/LevelCard";
+import Theme from "../../styles/Theme";
 
 const Container = styled.View`
 flex : 1;
@@ -43,7 +44,7 @@ border-bottom-width : 1px;
 
 
 const MyPageScreen = ({navigation})=>{
-
+    
     const userID=undefined;
     //const times=13; //플로깅 횟수
 
@@ -51,12 +52,12 @@ const MyPageScreen = ({navigation})=>{
     return( <Container> 
         <ScrollView>
         <SubContainer>
-        <ProfileAvatar/>
+            
+   
+        <ProfileAvatar size='lg'/>
         <StyledText>{userID?userID:'GUEST'}</StyledText>
 
-        <Button  size={'md'} variant='solid' >
-            프로필 편집
-          </Button>
+        <Button title="프로필 편집" color={'black'} onPress={()=>navigation.navigate('MyPageEdit')}/*본인일때만 보이기*/ />
           <Line/>
         </SubContainer>
  
