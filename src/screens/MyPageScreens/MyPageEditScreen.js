@@ -73,8 +73,11 @@ const MyPageEditScreen = ({navigation})=>{
             })
       
        },[])
-    
- 
+
+       const InputVaildTest =(e)=>{
+        // 0이 아닌값을 입력했는지 확인하기
+       }
+   
     return (<Container>
         <View style={{alignSelf:'center'}}>
 
@@ -109,18 +112,20 @@ const MyPageEditScreen = ({navigation})=>{
         }}
         placeholder="단위(cm)"
         maxLength={3} 
+       onEndEditing={InputVaildTest}
         />
 
         <StyledText>몸무게</StyledText>
         <TextInput 
         value={weight}
         style={TextInputStyle} 
-        autoCorrect={false}  
+        keyboardType='numeric'
         onChangeText={(text)=> {
             setWeight(text.replace(/[^0-9]/g, ''));
         }}
         placeholder="단위(kg)"
         maxLength={3} 
+        onEndEditing={InputVaildTest}
         />
 
         <StyledText>성별</StyledText>

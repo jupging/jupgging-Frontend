@@ -26,6 +26,13 @@ border-top-color : #dddddd;
 border-top-width : 1px;
 padding: 30px;
 `
+
+const ImageContainer =styled.View`
+flex-direction:row;
+justify-content : space-between;
+flex-wrap:wrap;
+
+`
 const StyledText = styled.Text`
 font-size : 20px;
 margin : 10px;
@@ -93,6 +100,20 @@ const MyPageScreen = ({navigation})=>{
 
       setIsLiked(!isLiked)
     }
+
+    const getImage = ()=>{
+
+      const length =7;
+      const temp = [];
+      for(var i=0;i<length;i++){
+        temp.push(<Image 
+          key={i}
+          source={{uri: 'https://img.hankyung.com/photo/202109/AA.27498391.1.jpg'}}
+          style={{width:120,height:120,display:'flex',marginBottom:15}}/>)
+      }
+
+      return temp;
+    }
     return( <Container> 
         <ScrollView 
         showsVerticalScrollIndicator ={false}
@@ -122,11 +143,15 @@ const MyPageScreen = ({navigation})=>{
        <LevelCard times={times}  /*Level 카드로 몇번 뛰었는지 전달*//>
        <StyledText>플로깅기록</StyledText>
 
+       <ImageContainer>
+         {getImage()}
+       </ImageContainer>
+
           <StyledText>챌린지</StyledText>
          
           {ChallengeList.map
           ((challenge)=><ChallengeAcheiveCard key={challenge.name} name={challenge.name} date="2022.02.01" condition={challenge.condition} badge={challenge.imageSrc}/>)}
-          <Button title='모두 보기'/>
+          <Button title='모두 보기' color={Theme.mainColor}/>
 
           
           </ScrollView>
