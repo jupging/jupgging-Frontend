@@ -2,7 +2,8 @@ import {
     createDrawerNavigator,
     DrawerContentScrollView,
     DrawerItemList,
-    DrawerItem } from '@react-navigation/drawer';
+    DrawerItem, 
+    DrawerContent} from '@react-navigation/drawer';
 import React from "react";
 import {PloggingScreen,SettingScreen,MyPageScreen,FeedScreen,RecordScreen,RankingScreen,ChallengeScreen,StoreScreen} from '../screens'; /*폴더까지만 입력하면 폴더 아래에 있는 index.js 파일을 가져옴 */
 import { MaterialIcons,FontAwesome5,Ionicons } from '@expo/vector-icons';

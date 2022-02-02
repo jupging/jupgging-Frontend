@@ -52,7 +52,9 @@ const data = [{
   authorImage: undefined,
 }]
   return (<Container>
-    <ScrollView>
+    <ScrollView 
+        showsVerticalScrollIndicator ={false}
+        showsHorizontalScrollIndicator={false}>
     <MyCarousel/>
     <StyledText>플로깅 뉴스</StyledText>
     {data.map((item,idx)=><FlatCard key={idx} item={item}/>)}
