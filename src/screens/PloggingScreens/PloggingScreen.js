@@ -1,6 +1,6 @@
 import React from "react";
 import styled from 'styled-components/native'
-import {View, Text, Card, Button} from 'react-native-ui-lib';
+
 const Container = styled.View`
 flex : 1;
 justify-content : center;

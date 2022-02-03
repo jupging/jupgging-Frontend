@@ -13,7 +13,7 @@ const Container = styled.View`
 
 const ImageContainer = styled.View`
   box-shadow: 0px 10px 15px rgba(60, 60, 60, 0.4);
-  width: ${Layout.window.width / 2 - 30};
+  width: ${parseInt(Layout.window.width / 2 - 30)};
   elevation: 4;
   min-height: 150px;
 `;

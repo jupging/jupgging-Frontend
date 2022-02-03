@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "juppging",
-    "slug": "juppging",
+    "name": "jupgging",
+    "slug": "jupgging",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -29,6 +29,6 @@
       "favicon": "./assets/favicon.png"
     },
     "description": "GDSC winter hack plogging application",
-    "githubUrl": "https://github.com/flowersayo/jupgging-Frontend"
+    "githubUrl": "https://github.com/jupging/jupgging-Frontend"
   }
 }

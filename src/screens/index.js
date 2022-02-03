@@ -8,7 +8,12 @@ import RecordScreen from './RecordScreens/RecordScreen';
 import FeedCardDetailScreen from './FeedScreens/FeedCardDetailScreen';
 import ChallengeScreen from './ChallengeScreens/ChallengeScreen';
 import StoreScreen from './StoreScreens/StoreScreen';
+import MyPageEditScreen from './MyPageScreens/MyPageEditScreen';
+import LoginScreen from './AuthScreens/LoginScreen';
+import SigninScreen from './AuthScreens/SigninScreen';
+import TutorialScreen from './TutorialScreens/TutorialScreen';
 export {PloggingScreen,
     SettingScreen,MyPageScreen,FeedScreen,
     RankingScreen,RecordScreen,FeedCardDetailScreen,
-    ChallengeScreen,StoreScreen};
+    ChallengeScreen,StoreScreen,MyPageEditScreen,
+    LoginScreen,SigninScreen,TutorialScreen};
