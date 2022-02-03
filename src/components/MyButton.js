@@ -1,32 +1,56 @@
 import React from 'react';
-import { TouchableOpacity, Text, View} from 'react-native';
-import PropTypes from 'prop-types';
+import { View, Button, StyleSheet, TouchableWithoutFeedback, Text,Image } from "react-native";
+import styled from 'styled-components/native'
+import Icon from '../images/Icon';
+import Layout from '../constants/Layout';
+const ButtonContainer = styled.TouchableOpacity.attrs(({onPress})=>{onPress:onPress})`
+elevation: 8;
+background-color: ${({bgColor})=>bgColor};
+border-radius: 5px;
+padding-vertical: 10px;
+padding-horizontal: 12px;
+flex-direction : row;
+margin:auto;
+shadowColor: #000000;
+shadowOpacity:100;
+shadowRadius: 10px;
 
-//custom button
-const MyButton = ({title, onPress,children })=> {
+`
+const ButtonText = styled.Text`
+fontSize: 18px;
+color: ${({txtColor})=>txtColor};
+font-weight: bold;
+align-self: center;
+margin-left : 10px;
+`;
 
-    return (
-        
-        <TouchableOpacity 
-         onPress= {onPress}
-        >
-        <View style={{backgroundColor: 'red', padding :10, margin: 10}}>
-            <Text style ={{fontSize:20 , color:'white'}}>{children||title} </Text>
-         </View>
-         </TouchableOpacity>
+const MyButton = ({ onPress, title,bgColor,txtColor,type }) => {
 
-    );
+
+    return(
+    <ButtonContainer onPress={onPress} bgColor={bgColor}>
+        {type?<Image source={Icon.GoogleIcon} style={{width:30,height:30}}/>:null}
+      <ButtonText txtColor={txtColor}>{title}</ButtonText>
+    </ButtonContainer>
+    )
 };
 
-//defalut props값 지정
-MyButton.defaultProps = {
-title : 'defult',
-onPress: () => alert('default'),
-}
 
-MyButton.propTypes= {
-title : PropTypes.string, //title은 반드시 string값이 넘어와야함. 
-onPress : PropTypes.func, // onPress는 반드시 함수가 넘어와야함.
-
-}
+  const styles = StyleSheet.create({
+    // ...
+    appButtonContainer: {
+      elevation: 8,
+      backgroundColor: 'white',
+      borderRadius: 10,
+      paddingVertical: 10,
+      paddingHorizontal: 12
+    },
+    appButtonText: {
+      fontSize: 18,
+      color: 'gray',
+      fontWeight: "bold",
+      alignSelf: "center",
+      textTransform: "uppercase"
+    }
+  });
 export default MyButton;

@@ -31,11 +31,11 @@ margin-left:auto;
 `;
 
 
-function RankingCard({rank,nickname,times,imageUrl,bgColor,txtColor}) { // 순위,닉네임,횟수
+function RankingCard({rank,nickname,times,imageUrl,bgColor,txtColor,onPress}) { // 순위,닉네임,횟수
 
 
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={onPress}>
     <Container bgColor={bgColor}>
         <StyledText txtColor={txtColor}>{rank}</StyledText>
       <ProfileAvatar size={'md'} url={imageUrl}/>

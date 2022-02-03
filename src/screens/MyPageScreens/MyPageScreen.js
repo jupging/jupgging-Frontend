@@ -141,17 +141,18 @@ const MyPageScreen = ({navigation})=>{
         <StyledText>플로깅 레벨
           </StyledText>
        <LevelCard times={times}  /*Level 카드로 몇번 뛰었는지 전달*//>
-       <StyledText>플로깅기록</StyledText>
-
-       <ImageContainer>
-         {getImage()}
-       </ImageContainer>
 
           <StyledText>챌린지</StyledText>
          
           {ChallengeList.map
           ((challenge)=><ChallengeAcheiveCard key={challenge.name} name={challenge.name} date="2022.02.01" condition={challenge.condition} badge={challenge.imageSrc}/>)}
           <Button title='모두 보기' color={Theme.mainColor}/>
+
+          <StyledText>플로깅기록</StyledText>
+
+       <ImageContainer>
+         {getImage()}
+       </ImageContainer>
 
           
           </ScrollView>

@@ -5,6 +5,7 @@ import MyCarousel from '../../components/MyCarousel';
 import styled from 'styled-components/native'
 
 import FlatCard from '../../components/FlatCard';
+import PhotoCard from '../../components/PhotoCard';
 const Container = styled.View`
 flex : 1;
 justify-content : center;
@@ -59,6 +60,8 @@ const data = [{
     <StyledText>플로깅 뉴스</StyledText>
     {data.map((item,idx)=><FlatCard key={idx} item={item}/>)}
   
+    <StyledText>플로깅 코스추천</StyledText>
+  <PhotoCard/>
     </ScrollView>
         </Container>);
 }

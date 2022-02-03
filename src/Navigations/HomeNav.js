@@ -60,20 +60,21 @@ const HomeNav = ()=>{
         drawerContent={props => <CustomDrawerContent {...props}/>}/*렌더링 할 요소 반환 */
         
         >
-          <Drawer.Screen name='MyPage' component={MyPageScreen} options={{  drawerLabel: '마이페이지' ,drawerIcon: ({focused})=><Ionicons name="person-circle" size={24} color={focused?'black':'#dddddd'} />,drawerItemStyle:{display:'none'}}}/>
+          <Drawer.Screen name='MyPage' component={MyPageScreen} options={{ headerTitle:'마이페이지',drawerLabel: '마이페이지' ,drawerIcon: ({focused})=><Ionicons name="person-circle" size={24} color={focused?'black':'#dddddd'} />,drawerItemStyle:{display:'none'}}}/>
             <Drawer.Screen name='Plogging' component={PloggingScreen} options={{ drawerLabel: '플로깅(러닝)', drawerIcon: ({focused})=> <FontAwesome5 name="running" size={24} color={focused?'black':'#dddddd'}/> }}/>
             <Drawer.Screen name='Feed' component={FeedScreen} 
                 options={({route,navigation})=>({ 
+                    headerTitle:'피드',
                     drawerLabel: '피드' ,
                     drawerIcon: ({focused})=><MaterialIcons name="dynamic-feed" size={24} color={focused?'black':'#dddddd'}/>,
                     headerShown : true,         
                     
                 })}/>
-            <Drawer.Screen name='Record' component={RecordScreen} options={{ drawerLabel: '기록' ,drawerIcon: ({focused})=><Ionicons name="bar-chart-sharp" size={24} color={focused?'black':'#dddddd'} />}}/>
-            <Drawer.Screen name='Challenge' component={ChallengeScreen} options={{ drawerLabel: '챌린지' ,drawerIcon: ({focused})=><Ionicons name="trophy-sharp" size={24} color={focused?'black':'#dddddd'} />}}/>
-            <Drawer.Screen name='Rank' component={RankingScreen} options={{ drawerLabel: '순위' ,drawerIcon: ({focused})=><Ionicons name="people-circle-outline" size={24} color={focused?'black':'#dddddd'} /> }} />
-            <Drawer.Screen name='Store' component={StoreScreen} options={{ drawerLabel: '상점' ,drawerIcon: ({focused})=><FontAwesome5 name="store" size={19} color={focused?'black':'#dddddd'} />}}/>
-            <Drawer.Screen name='Setting' component={SettingScreen} options={{ drawerLabel: '설정' ,drawerIcon: ({focused})=><Ionicons name="settings-sharp" size={24} color={focused?'black':'#dddddd'} />}}/>
+            <Drawer.Screen name='Record' component={RecordScreen} options={{ headerTitle:'기록', drawerLabel: '기록' ,drawerIcon: ({focused})=><Ionicons name="bar-chart-sharp" size={24} color={focused?'black':'#dddddd'} />}}/>
+            <Drawer.Screen name='Challenge' component={ChallengeScreen} options={{ headerTitle:'챌린지',drawerLabel: '챌린지' ,drawerIcon: ({focused})=><Ionicons name="trophy-sharp" size={24} color={focused?'black':'#dddddd'} />}}/>
+            <Drawer.Screen name='Rank' component={RankingScreen} options={{ headerTitle:'순위',drawerLabel: '순위' ,drawerIcon: ({focused})=><Ionicons name="people-circle-outline" size={24} color={focused?'black':'#dddddd'} /> }} />
+            <Drawer.Screen name='Store' component={StoreScreen} options={{ headerTitle:'상점',drawerLabel: '상점' ,drawerIcon: ({focused})=><FontAwesome5 name="store" size={19} color={focused?'black':'#dddddd'} />}}/>
+            <Drawer.Screen name='Setting' component={SettingScreen} options={{ headerTitle:'설정',drawerLabel: '설정' ,drawerIcon: ({focused})=><Ionicons name="settings-sharp" size={24} color={focused?'black':'#dddddd'} />}}/>
     
         </Drawer.Navigator>
     )

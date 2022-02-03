@@ -1,5 +1,6 @@
 import React from "react";
 import styled from 'styled-components/native'
+import {Button} from 'react-native';
 
 const Container = styled.View`
 flex : 1;
@@ -13,12 +14,12 @@ font-size : 30px;
 margin : 10px;
 `;
 
-const PloggingScreen = ({navigation})=>{
+const TutorialScreen = ({navigation})=>{
 
     return <Container>
-        <StyledText>PloggingScreen</StyledText>
-        
+        <StyledText> TutorialScreen</StyledText>
+        <Button onPress={()=>navigation.navigate('Home')}title="플로깅하러가기"></Button>
         </Container>
 }
 
-export default PloggingScreen;
+export default  TutorialScreen;

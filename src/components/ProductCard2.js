@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableWithoutFeedback,Image} from "react-native";
+import { TouchableWithoutFeedback,Image,Linking} from "react-native";
 import { withNavigation } from "react-navigation";
 
 import styled from "styled-components";
@@ -13,7 +13,7 @@ const Container = styled.View`
 
 const ImageContainer = styled.View`
   box-shadow: 0px 10px 15px rgba(60, 60, 60, 0.4);
-  width: ${parseInt(Layout.window.width / 2 - 30)};
+  width: ${parseInt(Layout.window.width / 2 - 30)}px;
   elevation: 4;
   min-height: 150px;
 `;
@@ -27,26 +27,26 @@ const Name = styled.Text`
 `;
 
 const Price = styled.Text`
-  font-weight: 600;
+  font-weight:bold;
   margin-left: 10px;
   color: ${Colors.blackColor};
+  font-size: 20px;
 `;
 const ContentContainer=styled.View`
 background-color: white;
-border-bottom-left-radius: 15px;
-border-bottom-right-radius: 15px;
+
 `
-const ProductCard = ({item}) => {
-    const { imgSrc, name, price, navigation }=item;
+const ProductCard2 = ({item}) => {
+    const { imgSrc, name, price, navigation,url }=item;
 
     const image_width =parseInt(Layout.window.width / 2 - 30);
     const image_height =parseInt(Layout.window.width / 2 - 30);
     return(
-  <TouchableWithoutFeedback onPress={() => alert('click')}>
+  <TouchableWithoutFeedback onPress={() => Linking.openURL(url)}>
     <Container>
       <ImageContainer>
       <Image
-        style={{borderTopLeftRadius:15 ,borderTopRightRadius:15,width:image_width,height:image_height}}
+        style={{width:image_width,height:image_height}}
         source={{
           uri: imgSrc,
         }}
@@ -54,8 +54,9 @@ const ProductCard = ({item}) => {
     
       </ImageContainer>
       <ContentContainer>
-      <Name>{name}</Name>
       <Price>{`$${price}`}</Price>
+      <Name>{name}</Name>
+    
       </ContentContainer>
     </Container>
   </TouchableWithoutFeedback>
@@ -67,4 +68,4 @@ ProductCard.propTypes = {
   price: PropTypes.string.isRequired
 };
 */
-export default ProductCard;
+export default ProductCard2;

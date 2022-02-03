@@ -5,7 +5,7 @@ import LevelSystem from '../constants/LevelSystem';
 import ProgressBar from 'react-native-progress/Bar';
 
 const Container = styled.View`
-flex : 1;
+
 justify-content : flex-start;
 align-items : flex-start;
 border-radius: 10px;
