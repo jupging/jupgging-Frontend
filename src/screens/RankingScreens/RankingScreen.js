@@ -7,10 +7,12 @@ import Theme from "../../styles/Theme";
 import LottieView from "lottie-react-native";
 import UserDetailModal from "./UserDetailModal";
 import DropDownPicker from 'react-native-dropdown-picker';
+import { useFonts } from 'expo-font';
 
 const Container = styled.View`
 flex : 1;
 padding:10px;
+
 `
 
 const StyledText = styled.Text`
@@ -28,7 +30,7 @@ const RankingScreen = ({navigation})=>{
     const [modalVisible,setModalVisible] = useState(false);
     const my_rank=7;
     const my_nickname='flowersayo';
-    const my_times=17;
+    const my_times=3;
 
     const podium_data ={
         _1st:{
@@ -61,11 +63,14 @@ const RankingScreen = ({navigation})=>{
     }
     const [open, setOpen] = useState(false);
     const [standard, setStandard] = useState('time'); //정렬 기준
- 
+    const [loaded] = useFonts({ NanumSquareR: require('../../../assets/font/NanumSquareR.ttf') });
+    if(!loaded)
+    return null;
+
     return (<Container>
         <UserDetailModal modalVisible={modalVisible} setModalVisible={setModalVisible} userData={modalData}/>
         
-            <View style={{backgroundColor:'white',padding:20}}>
+            <View style={{backgroundColor:'white',padding:20,elevation: 5}}>
         <StyledText>내가 바로 지구 방위대</StyledText>
         
         <LottieView 

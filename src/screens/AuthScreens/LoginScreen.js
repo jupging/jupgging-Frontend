@@ -4,7 +4,6 @@ import MyButton from "../../components/MyButton";
 import * as Google from "expo-google-app-auth";
 import styled from 'styled-components/native'
 import { useFonts } from 'expo-font';
-import LottieView from "lottie-react-native";
 import Icon from "../../images/Icon";
 
 import Theme from "../../styles/Theme";

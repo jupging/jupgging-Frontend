@@ -19,7 +19,7 @@ const MainStackNav = ()=>{
        <Stack.Screen name="MyPageEdit" component={MyPageEditScreen} />
         <Stack.Screen name="Login" component={LoginScreen} options={{headerShown:false }}/>
         <Stack.Screen name="Signin" component={SigninScreen}  options={{headerTitle:'회원가입',cardStyle:{backgroundColor:'white'}}} />
-        <Stack.Screen name="Tutorial" component={TutorialScreen}/>
+        <Stack.Screen name="Tutorial" component={TutorialScreen} options={{headerShown:false,cardStyle:{backgroundColor:'white'}}}/>
     </Stack.Navigator>);
 }
 

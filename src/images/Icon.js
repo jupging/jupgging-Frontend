@@ -5,6 +5,7 @@ import RunningTrack from '../../assets/running-track.png'
 import Shoe from '../../assets/icon.png'
 import KaKaoIcon from '../../assets/kakao.png'
 import HandsOnEarth from  '../../assets/environmentalism.png'
+import Plogging from  '../../assets/plogging.jpg'
 const Icon ={
     GoogleIcon:GoogleIcon,
 
@@ -12,7 +13,8 @@ const Icon ={
     RunningTrack:RunningTrack,
     Shoe:Shoe,
     HandsOnEarth:HandsOnEarth,
-    KaKaoIcon:KaKaoIcon
+    KaKaoIcon:KaKaoIcon,
+    Plogging:Plogging
 }
 
 

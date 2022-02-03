@@ -13,6 +13,7 @@ width:100%;
 align-self:center;
 margin-top:10px;
 padding:5px;
+elevation: 5;
 `
 
 const StyledText = styled.Text`
