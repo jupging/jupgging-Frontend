@@ -1,18 +1,55 @@
 import React from "react";
-import {  View, Button,ImageBackground } from "react-native";
+import {  View, Button,ImageBackground,Image } from "react-native";
 import MyButton from "../../components/MyButton";
 import * as Google from "expo-google-app-auth";
 import styled from 'styled-components/native'
+import { useFonts } from 'expo-font';
+import LottieView from "lottie-react-native";
+import Icon from "../../images/Icon";
 
-const Container = styled.View`
+import Theme from "../../styles/Theme";
+const Container = styled.SafeAreaView`
 flex : 1;
 justify-content : center;
 align-items : center;
+background-color:white;
+
+`
+const StyledText = styled.Text`
+font-size : 60px;
+font-family : NanumBarunGothicUltraLight;
+text-align:center;
+color:#65F6E9;
+
+`;
+
+const Small = styled.Text`
+font-size : 20px;
+font-family : NanumBarunGothicUltraLight;
+text-align:center;
+color : ${Theme.mintColor}
+`;
+const ButtonContainer = styled.View`
+margin-top:auto;
+width :100%;
+`
+
+const SubContainer = styled.SafeAreaView`
+
+justify-content : center;
+align-self : center;
+background-color: transparent;
+
 
 
 `
 
 const LoginScreen = ({ navigation }) => {
+
+    const [loaded] = useFonts({ 
+        NanumBarunGothicUltraLight: require('../../../assets/font/NanumBarunGothicUltraLight.ttf'),
+    });
+
   const signInAsync = async () => {
     console.log("LoginScreen.js 6 | loggin in");
     try {
@@ -32,17 +69,23 @@ const LoginScreen = ({ navigation }) => {
     }
   };
 
+  if(!loaded)
+  return null;
+
   return (
     <Container>
-      <ImageBackground source={{ uri: "https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F85885221-aeb9-4f4e-87dd-889a390fac64%2FUntitled.png?table=block&id=bcd8e017-702e-4409-8ddb-a0e06430ee06&spaceId=b19e4487-dfef-4395-9201-8b3dc303ca25&width=2000&userId=6607e252-6916-4ebd-8408-816dff57d023&cache=v2" }} resizeMode="cover" style={{
-    flex: 1,
-    justifyContent: "center",
-    width:'100%',
-    
-  }}>
-    
-      <MyButton title="Login with Google" onPress={signInAsync} bgColor={'white'}  txtColor={'#5f5f5f'} type='google'/>
-      </ImageBackground>
+         <Image source={Icon.Shoe} style={{width:100,height:100}}/>
+     <StyledText>JUPGGING</StyledText>
+     <Small>Run for Earth</Small>
+   
+     <Image source={Icon.  HandsOnEarth} style={{width:100,height:100,margin:30}}/>
+   <SubContainer>
+     <ButtonContainer>
+      <MyButton title="구글계정으로 로그인하기" onPress={signInAsync} bgColor={'white'}  txtColor={'#5f5f5f'} type='google'/>
+      <MyButton title="카카오계정으로 로그인하기" onPress={()=>alert('구현 준비중')} bgColor={'#f9e000'}  txtColor={'#3c1e1e'} type='kakao'/>
+      </ButtonContainer>
+      </SubContainer>
+   
     </Container>
   );
 };

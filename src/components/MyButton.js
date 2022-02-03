@@ -10,7 +10,7 @@ border-radius: 5px;
 padding-vertical: 10px;
 padding-horizontal: 12px;
 flex-direction : row;
-margin:auto;
+margin:5px;
 shadowColor: #000000;
 shadowOpacity:100;
 shadowRadius: 10px;
@@ -26,10 +26,17 @@ margin-left : 10px;
 
 const MyButton = ({ onPress, title,bgColor,txtColor,type }) => {
 
+let logo=null;
+  if(type ==='google')
+  logo=<Image source={Icon.GoogleIcon} style={{width:30,height:30}}/>
+  else if (type ==='kakao')
+  logo=<Image source={Icon.KaKaoIcon} style={{width:30,height:30}}/>
+
+
 
     return(
     <ButtonContainer onPress={onPress} bgColor={bgColor}>
-        {type?<Image source={Icon.GoogleIcon} style={{width:30,height:30}}/>:null}
+        {logo}
       <ButtonText txtColor={txtColor}>{title}</ButtonText>
     </ButtonContainer>
     )
@@ -39,7 +46,7 @@ const MyButton = ({ onPress, title,bgColor,txtColor,type }) => {
   const styles = StyleSheet.create({
     // ...
     appButtonContainer: {
-      elevation: 8,
+
       backgroundColor: 'white',
       borderRadius: 10,
       paddingVertical: 10,

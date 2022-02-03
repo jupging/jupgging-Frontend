@@ -19,6 +19,7 @@ margin : 10px;
 font-weight: bold;
 text-align : center;
 color:black;
+font-family : NanumSquareR;
 
 `;
 
