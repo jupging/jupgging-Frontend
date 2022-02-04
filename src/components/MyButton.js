@@ -5,7 +5,7 @@ import Icon from '../images/Icon';
 import Layout from '../constants/Layout';
 const ButtonContainer = styled.TouchableOpacity.attrs(({onPress})=>{onPress:onPress})`
 elevation: 8;
-background-color: ${({bgColor})=>bgColor};
+background-color: ${({bgColor})=>bgColor?bgColor:'white'};
 border-radius: 5px;
 padding-vertical: 10px;
 padding-horizontal: 12px;
@@ -18,10 +18,10 @@ shadowRadius: 10px;
 `
 const ButtonText = styled.Text`
 fontSize: 18px;
-color: ${({txtColor})=>txtColor};
+color: ${({txtColor})=>txtColor?txtColor:'white'};
 font-weight: bold;
 align-self: center;
-margin-left : 10px;
+margin-left : auto;
 `;
 
 const MyButton = ({ onPress, title,bgColor,txtColor,type }) => {

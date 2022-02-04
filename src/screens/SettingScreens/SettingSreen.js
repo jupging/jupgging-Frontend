@@ -13,6 +13,10 @@ font-size : 30px;
 margin : 10px;
 `;
 
+const memu = ()=>{
+
+    return <View></View>
+}
 const SettingScreen = ({navigation})=>{
 
     return <Container>

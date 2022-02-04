@@ -7,7 +7,7 @@ import Theme from "../../styles/Theme";
 import LottieView from "lottie-react-native";
 import UserDetailModal from "./UserDetailModal";
 import DropDownPicker from 'react-native-dropdown-picker';
-import { useFonts } from 'expo-font';
+
 
 const Container = styled.View`
 flex : 1;
@@ -21,7 +21,7 @@ margin : 10px;
 font-weight: bold;
 text-align : center;
 color:black;
-font-family : NanumSquareR;
+
 
 `;
 
@@ -62,10 +62,8 @@ const RankingScreen = ({navigation})=>{
         badge: [1,0,1,0,1,0,0,1,0,1,0]
     }
     const [open, setOpen] = useState(false);
-    const [standard, setStandard] = useState('time'); //정렬 기준
-    const [loaded] = useFonts({ NanumSquareR: require('../../../assets/font/NanumSquareR.ttf') });
-    if(!loaded)
-    return null;
+    const [standard, setStandard] = useState('count'); //정렬 기준
+  
 
     return (<Container>
         <UserDetailModal modalVisible={modalVisible} setModalVisible={setModalVisible} userData={modalData}/>
@@ -88,8 +86,8 @@ const RankingScreen = ({navigation})=>{
           setOpen={setOpen}
           setValue={setStandard}
           items={[
-              {label: '좋아요순', value: 'like'},
-              {label: '횟수순', value: 'time'},
+              {label: '거리순', value: 'distance'},
+              {label: '횟수순', value: 'count'},
           ]}
           containerStyle={{height: 40,width:150,marginLeft:'auto',marginVertical:10}}
           onChangeItem={item => console.log(item.label, item.value)}

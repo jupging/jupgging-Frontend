@@ -11,7 +11,7 @@ const MainStackNav = ()=>{
         // local 에서 userId를 가져왔을때 정보가 있다면 바로 Home으로 보내고, 그렇지 않으면 Login으로
     }
     return ( 
-    <Stack.Navigator initialRouteName="Login"
+    <Stack.Navigator initialRouteName="Home"
                             screenOptions={{headerShown: true}} >
 
         <Stack.Screen name="Home" component={HomeNav} options={{headerShown:false}}  />                        

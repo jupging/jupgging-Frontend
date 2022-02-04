@@ -5,8 +5,11 @@ import * as Google from "expo-google-app-auth";
 import styled from 'styled-components/native'
 import { useFonts } from 'expo-font';
 import Icon from "../../images/Icon";
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import AppLoading from 'expo-app-loading';
 import Theme from "../../styles/Theme";
+import axios from 'axios';
+
 const Container = styled.SafeAreaView`
 flex : 1;
 justify-content : center;
@@ -34,14 +37,15 @@ width :100%;
 `
 
 const SubContainer = styled.SafeAreaView`
-
 justify-content : center;
 align-self : center;
 background-color: transparent;
-
-
-
 `
+
+/*
+1. sign - in api
+
+*/
 
 const LoginScreen = ({ navigation }) => {
 
@@ -61,7 +65,7 @@ const LoginScreen = ({ navigation }) => {
         // Then you can use the Google REST API
         console.log("LoginScreen.js 17 | success, navigating to profile");
         navigation.navigate("Signin", { user });
-        console.log(accessToken);
+      
       }
     } catch (error) {
       console.log("LoginScreen.js 19 | error with login", error);
@@ -77,7 +81,7 @@ const LoginScreen = ({ navigation }) => {
      <StyledText>JUPGGING</StyledText>
      <Small>Run for Earth</Small>
    
-     <Image source={Icon.  HandsOnEarth} style={{width:100,height:100,margin:30}}/>
+     <Image source={Icon.HandsOnEarth} style={{width:100,height:100,margin:30}}/>
    <SubContainer>
      <ButtonContainer>
       <MyButton title="구글계정으로 로그인하기" onPress={signInAsync} bgColor={'white'}  txtColor={'#5f5f5f'} type='google'/>

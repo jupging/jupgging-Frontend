@@ -2,7 +2,7 @@ import React from "react";
 import styled from 'styled-components/native'
 import {View, Text,Image} from 'react-native-ui-lib';
 import {Box,AspectRatio,Center,Stack,HStack,Heading} from 'native-base';
-
+import Theme from "../styles/Theme";
 
 const PhotoCard = ()=>{
 
@@ -23,8 +23,8 @@ const PhotoCard = ()=>{
             uri: "https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg"
           }} alt="image" />
           </AspectRatio>
-          <Center bg="#7cd1b8" _dark={{
-          bg: "#7cd1b8"
+          <Center bg={'black'} _dark={{
+          bg: 'black'
         }} _text={{
           color: "white",
           fontWeight: "300",

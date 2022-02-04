@@ -1,16 +1,20 @@
-import React from 'react';
-import { View,ScrollView,FlatList,Image } from 'react-native';
+import React, { useState } from 'react';
+import { View,ScrollView,FlatList,ImageBackground,Image,Text  } from 'react-native';
 import styled from 'styled-components/native'
 import ProductCard from '../../components/ProductCard';
 import { AntDesign } from '@expo/vector-icons';
 import StoreBannerImages from '../../images/StoreBannerImage';
-import ProductCard2 from '../../components/ProductCard2';
-
+import { useFonts } from 'expo-font';
+import axios from 'axios';
+import Carousel from 'react-native-snap-carousel';
+import { BASE_URL } from '../../constants/Api';
+import Layout from '../../constants/Layout';
 const Container = styled.View`
 flex : 1;
 justify-content : center;
 align-items : flex-start;
-margin:10px;
+padding:10px
+
 
 `
 
@@ -22,60 +26,94 @@ margin:10px;
 flex-wrap:wrap;
 
 `
-const TextContainer = styled.View`
-flex-direction:row;
 
-`
 const StyledText = styled.Text`
 font-size : 30px;
-margin : 10px;
+margin-vertical : 10px;
+font-family:NanumSquareR;
 `;
 
-const ProductData=[
-  { imgSrc:'http://m.onlyeco.co.kr/web/product/big/202110/8fc1b511610659ce6ca753c1d06247aa.jpg', name: '(Walking for earth) 깨끗한 지구를 위한 플로깅 키트', price:21000 ,url:'https://project1907.com/product/runnning-for-earth-%EA%B9%A8%EB%81%97%ED%95%9C-%EC%A7%80%EA%B5%AC%EB%A5%BC-%EC%9C%84%ED%95%9C-%ED%94%8C%EB%A1%9C%EA%B9%85-%ED%82%A4%ED%8A%B8/94/category/56/display/1/'},{ imgSrc:'http://m.onlyeco.co.kr/web/product/big/202110/8fc1b511610659ce6ca753c1d06247aa.jpg',
- name: '(Walking for earth) 깨끗한 지구를 위한 플로깅 키트', price:21000,url:'https://project1907.com/product/runnning-for-earth-%EA%B9%A8%EB%81%97%ED%95%9C-%EC%A7%80%EA%B5%AC%EB%A5%BC-%EC%9C%84%ED%95%9C-%ED%94%8C%EB%A1%9C%EA%B9%85-%ED%82%A4%ED%8A%B8/94/category/56/display/1/' },{ imgSrc:'http://m.onlyeco.co.kr/web/product/big/202110/8fc1b511610659ce6ca753c1d06247aa.jpg',
- name: '(Walking for earth) 깨끗한 지구를 위한 플로깅 키트', price:21000,url:'https://project1907.com/product/runnning-for-earth-%EA%B9%A8%EB%81%97%ED%95%9C-%EC%A7%80%EA%B5%AC%EB%A5%BC-%EC%9C%84%ED%95%9C-%ED%94%8C%EB%A1%9C%EA%B9%85-%ED%82%A4%ED%8A%B8/94/category/56/display/1/' },{ imgSrc:'http://m.onlyeco.co.kr/web/product/big/202110/8fc1b511610659ce6ca753c1d06247aa.jpg',
- name: '(Walking for earth) 깨끗한 지구를 위한 플로깅 키트', price:21000,url:'https://project1907.com/product/runnning-for-earth-%EA%B9%A8%EB%81%97%ED%95%9C-%EC%A7%80%EA%B5%AC%EB%A5%BC-%EC%9C%84%ED%95%9C-%ED%94%8C%EB%A1%9C%EA%B9%85-%ED%82%A4%ED%8A%B8/94/category/56/display/1/' }]
-
+const Small = styled.Text`
+font-size : 10px;
+color:red;
+`;
 
 const StoreScreen = ({navigation})=>{
+const [productList,setProductList] = useState([])
+const [index,setIndex]=useState(1); // 상점 몇번째 배너인지
 
-    const renderItem = ({ item,idx}) => (
-        <ProductCard item={item} key={idx}/>
+  React.useEffect(()=>{
+
+    axios.get(`${BASE_URL}/shop`)
+    .then(function (response) {
+      if(response.data.isSuccess){
+      console.log(response.data);
+      setProductList(response.data.result);
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  
+  },[])
+  
+    const renderItem = ({ item,idx}) => ( // 아이템 flatlist
+        <ProductCard item={item} key={item.productId}/>
       );
-    return <Container>
+
+      const renderStoreBanner = ({ item,idx}) => ( // 아이템 flatlist
+        <ImageBackground source={item} key={item.productId} style={{backgroundColor:'red',alignSelf:'center',width:Layout.window.width,height:500}}>
+          <Text style={{position:'absolute',bottom:30,right:50,color:'white',backgroundColor:'black',padding:10}}>{index}/4</Text>
+          </ImageBackground>
+        
+      );
+
+      const [loaded] = useFonts({ NanumSquareR: require('../../../assets/font/NanumSquareR.ttf') });
+      if(!loaded)
+      return null;
+  
+    return (<Container>
         <ScrollView 
         showsVerticalScrollIndicator ={false}
         showsHorizontalScrollIndicator={false}>
-        <Image source={StoreBannerImages[0]} style={{width: '100%' ,height:500}}/>
-            <StyledText>플로깅키트와 함께 
-            지구를 지켜요🌱</StyledText>
-            <TextContainer>
+           <StyledText>플로깅으로 지구를 지켜요🌱</StyledText>
+           
             <StyledText>추천 아이템</StyledText>
-            <AntDesign style={{alignSelf:'center',color:'gray'}}name="right" size={24} color="black" onPress={()=>alert('hi')}/>
-            </TextContainer>
+        
+          
+            <Carousel
+                  data={StoreBannerImages}
+                  renderItem={renderStoreBanner}
+                  onSnapToItem={(index) => setIndex(index) }
+                  windowSize={21}
+                  sliderWidth={Layout.window.width}
+                  sliderHeight={300}
+                  itemHeight={500}
+                  itemWidth={Layout.window.width}
+                  autoplay={false}
+                  activeSlideAlignment='center'
+             
+                
+                ></Carousel>
+           
+           
+            <StyledText>모든 아이템  <AntDesign style={{alignSelf:'center',color:'gray'}}name="right" size={24} color="black" onPress={()=>alert('hi')}/></StyledText>
+          
+            
        <FlatList 
-       data={ProductData} 
+       data={productList} 
        renderItem={renderItem}
-       keyExtractor={item => item.id}
+       keyExtractor={item => item.productId}
        horizontal={true}
        showsHorizontalScrollIndicator={false}
 
        />
-        <TextContainer>
-            <StyledText>모든 아이템</StyledText>
-            <AntDesign style={{alignSelf:'center',color:'gray'}}name="right" size={24} color="black" onPress={()=>alert('hi')}/>
-            </TextContainer>
-            <SubContainer>
-            <ProductCard2 item={ProductData[0]}/>
-            <ProductCard2 item={ProductData[0]}/>
-            <ProductCard2 item={ProductData[0]}/>
-            <ProductCard2 item={ProductData[0]}/>
-            </SubContainer>
+       
+         
       
       </ScrollView>
 
-        </Container>
+        </Container>)
 }
 
 export default StoreScreen;
