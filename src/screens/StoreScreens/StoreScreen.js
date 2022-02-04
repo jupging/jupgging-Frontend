@@ -63,7 +63,7 @@ const [index,setIndex]=useState(1); // 상점 몇번째 배너인지
 
       const renderStoreBanner = ({ item,idx}) => ( // 아이템 flatlist
         <ImageBackground source={item} key={item.productId} style={{backgroundColor:'red',alignSelf:'center',width:Layout.window.width,height:500}}>
-          <Text style={{position:'absolute',bottom:30,right:50,color:'white',backgroundColor:'black',padding:10}}>{index}/4</Text>
+          <Text style={{position:'absolute',bottom:30,right:50,color:'white',backgroundColor:'black',padding:10}}>{index+1}/4</Text>
           </ImageBackground>
         
       );

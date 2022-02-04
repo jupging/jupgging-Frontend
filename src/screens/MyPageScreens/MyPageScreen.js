@@ -142,7 +142,7 @@ const MyPageScreen = ({navigation})=>{
         <StyledText>플로깅 레벨
           </StyledText>
        <LevelCard times={times}  /*Level 카드로 몇번 뛰었는지 전달*//>
-
+      
           <StyledText>챌린지</StyledText>
          
           {ChallengeList.map

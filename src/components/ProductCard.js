@@ -23,18 +23,21 @@ const Name = styled.Text`
   margin-left: 10px;
   margin-bottom: 10px;
   max-width:150px;
-  
+  flex:0.8;
 `;
 
 const Price = styled.Text`
   font-weight: 600;
   margin-left: 10px;
   color: ${Colors.blackColor};
+ 
 `;
 const ContentContainer=styled.View`
+
 background-color: white;
 border-bottom-left-radius: 15px;
 border-bottom-right-radius: 15px;
+height: 60px;
 `
 const ProductCard = ({item}) => {
   /*
