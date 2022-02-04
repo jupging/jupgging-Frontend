@@ -22,7 +22,9 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+        "backgroundColor": "#FFFFFF",
+        "package": "com.jupging.jupging",
+        "config": { "googleMaps": { "apiKey" : "AIzaSyCo1D2uCg_TJcUz36R1dC_JJ4PInBro4co"}}
       }
     },
     "web": {

@@ -1,0 +1,57 @@
+[
+    {
+        "thumnail" : "https://cdn.icon-icons.com/icons2/426/PNG/512/Map_1135px_1195280_42272.png",
+        "id" : 1,
+        "year": 2022,
+        "month" : 11,
+        "day" : 12,
+        "week" : "화요일",
+        "kilometer" : 3.8,
+        "kcal" : 168,
+        "time" : 500
+    },
+    {
+        "thumnail" : "https://cdn.icon-icons.com/icons2/426/PNG/512/Map_1135px_1195280_42272.png",
+        "id" : 2,
+        "year": 2022,
+        "month" : 8,
+        "day" : 30,
+        "week" : "수요일",
+        "kilometer" : 3.8,
+        "kcal" : 168,
+        "time" : 500
+    },
+    {
+        "thumnail" : "https://cdn.icon-icons.com/icons2/426/PNG/512/Map_1135px_1195280_42272.png",
+        "id" : 2,
+        "year": 2022,
+        "month" : 1,
+        "day" : 30,
+        "week" : "수요일",
+        "kilometer" : 3.8,
+        "kcal" : 168,
+        "time" : 500
+    },
+    {
+        "thumnail" : "https://cdn.icon-icons.com/icons2/426/PNG/512/Map_1135px_1195280_42272.png",
+        "id" : 2,
+        "year": 2022,
+        "month" : 2,
+        "day" : 30,
+        "week" : "수요일",
+        "kilometer" : 3.8,
+        "kcal" : 168,
+        "time" : 500
+    },
+    {
+        "thumnail" : "https://cdn.icon-icons.com/icons2/426/PNG/512/Map_1135px_1195280_42272.png",
+        "id" : 2,
+        "year": 2022,
+        "month" : 3,
+        "day" : 30,
+        "week" : "수요일",
+        "kilometer" : 3.8,
+        "kcal" : 168,
+        "time" : 500
+    }
+]
