@@ -8,8 +8,8 @@ justify-content : center;
 align-items : center;
 flex-direction: row;
 background-color: white;
-border-radius:10;
-overflow: scroll;
+border-radius:10px;
+overflow: hidden;
 margin-vertical:10px;
 margin-horizontal:20px;
 height : 100px;
@@ -18,8 +18,8 @@ height : 100px;
 const Title= styled.Text`
 
 font-weight : bold;
-font-size : 15;
-margin-vertical: 10;
+font-size : 15px;
+margin-vertical: 10px;
 
 `
 
