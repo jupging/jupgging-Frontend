@@ -4,6 +4,7 @@ import Icon from '../images/Icon';
 function ImageBtn({changeMode,type}) {
 
   let imageSrc; 
+  
   if(type ==='wait') //대기상태
   imageSrc= Icon.Play;
   else if(type =='running')
@@ -22,7 +23,7 @@ function ImageBtn({changeMode,type}) {
   }
   return <TouchableWithoutFeedback onPress={onPress}>
 
-      <Image source={imageSrc} style={{width:100,height:100,tintColor:'red'}} />
+      <Image source={imageSrc} style={{width:100,height:100}} />
   </TouchableWithoutFeedback>;
 }
 

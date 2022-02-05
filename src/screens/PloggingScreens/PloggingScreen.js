@@ -1,14 +1,14 @@
 import React, { useState, useEffect,useLayoutEffect,Component } from 'react';
 import { Platform, Text, View, StyleSheet,Dimensions,Image } from 'react-native';
 import * as Location from 'expo-location';
-import MapView,{Marker,AnimatedRegion,Polyline,MarkerAnimated} from 'react-native-maps';
+import MapView,{Marker,AnimatedRegion,Polyline,MarkerAnimated,Circle} from 'react-native-maps';
 import Icon from '../../images/Icon';
 import { NavigationRouteContext } from '@react-navigation/native';
 import {LATITUDE,LONGITUDE,LATITUDE_DELTA,LONGITUDE_DELTA}from '../../constants/location';
 import haversine from 'haversine';
 import ImageBtn from '../../components/ImageBtn';
 import Label from '../../components/Label';
-
+import Theme from '../../styles/Theme'
 
 class PloggingScreen extends Component{
 
@@ -26,7 +26,7 @@ runnging : 러닝 중 -> 멈춤 버튼 렌더링
   
     this.state = {
       mode : 'wait', 
-      kcal : 13,
+      kcal : 0,
       latitude: LATITUDE,
       longitude: LONGITUDE,
       routeCoordinates: [],
@@ -75,7 +75,8 @@ runnging : 러닝 중 -> 멈춤 버튼 렌더링
   };
 
   calcKcal = distanceDelta=>{
-    // 이동한 거리를 이용해 kcal 계산해주는 함수.
+    // 이동한 거리를 이용해 kcal 계산해주는 함수. 0.1m당 7kcal로 계산함.
+    return distanceDelta/0.1 * 7;
   }
   getMapRegion = () => ({
     latitude: this.state.latitude,
@@ -88,7 +89,7 @@ runnging : 러닝 중 -> 멈춤 버튼 렌더링
     // 위치 변화 감지
     Location.watchPositionAsync({ accuracy: Location.Accuracy.Balanced, timeInterval: 300, distanceInterval: 1 },
       position => {
-        const { coordinate, routeCoordinates, distanceTravelled } =   this.state;
+        const { coordinate, routeCoordinates, distanceTravelled,kcal } =   this.state;
         const { latitude, longitude } = position.coords;
         
         const newCoordinate = {
@@ -110,9 +111,8 @@ runnging : 러닝 중 -> 멈춤 버튼 렌더링
            latitude,
            longitude,
            routeCoordinates: routeCoordinates.concat([newCoordinate]),
-           distanceTravelled:
-           distanceTravelled + this.calcDistance(newCoordinate),
-           //kcal: kcal+ this.calcKcal(this.state.distanceTravelled),
+           distanceTravelled:distanceTravelled + this.calcDistance(newCoordinate),
+           kcal: kcal+ this.calcKcal(distanceTravelled),
            prevLatLng: newCoordinate
          });
        },
@@ -125,11 +125,11 @@ runnging : 러닝 중 -> 멈춤 버튼 렌더링
     return  <View style={styles.map}>
         <View style={{flexDirection:'row',justifyContent:'center'}}>
         <Label name={'거리(km)'} value={this.state.distanceTravelled.toFixed(3)}/>
-
-        <Label name={'칼로리'} value={this.state.kcal}/>
+        <Image source={Icon.Stop} style={{width:100,height:100,tintColor:'black'}} />
+        <Label name={'칼로리'} value={this.state.kcal.toFixed(3)}/>
         </View>
-       
-{this.getIcon()}
+        
+  {this.getIcon()}
   <MapView
   style={styles.map}
   showUserLocation
@@ -137,8 +137,6 @@ runnging : 러닝 중 -> 멈춤 버튼 렌더링
   loadingEnabled
   region={this.getMapRegion()}
   showsUserLocation
-  tintColor='red'
-  maxZoomLevel={20}
   onPress={(e)=>{
     console.log(e.nativeEvent.coordinate)
     const newTrashLocation=e.nativeEvent.coordinate;
@@ -168,6 +166,7 @@ runnging : 러닝 중 -> 멈춤 버튼 렌더링
   coordinate={location}
   title={'쓰레기통 위치'}
   description={'쓰레기통 위치'}
+  onPress={(e)=>{console.log(e.nativeEvent.coordinate)}}
 />)}
 
 </MapView>
