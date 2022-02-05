@@ -8,6 +8,9 @@ import HandsOnEarth from  '../../assets/environmentalism.png'
 import Plogging from  '../../assets/plogging.jpg'
 import Play from  '../../assets/play.png'
 import Person from '../../assets/person.png'
+import Pause from '../../assets/pause.png'
+import Stop from '../../assets/stop.png'
+
 const Icon ={
     GoogleIcon:GoogleIcon,
 
@@ -18,7 +21,9 @@ const Icon ={
     KaKaoIcon:KaKaoIcon,
     Plogging:Plogging,
     Play:Play,
-    Person: Person
+    Person: Person,
+    Stop:Stop,
+    Pause:Pause
     
 }
 

@@ -6,6 +6,8 @@ import Icon from '../../images/Icon';
 import { NavigationRouteContext } from '@react-navigation/native';
 import {LATITUDE,LONGITUDE,LATITUDE_DELTA,LONGITUDE_DELTA}from '../../constants/location';
 import haversine from 'haversine';
+import ImageBtn from '../../components/ImageBtn';
+import Label from '../../components/Label';
 
 
 class PloggingScreen extends Component{
@@ -13,27 +15,68 @@ class PloggingScreen extends Component{
   
   constructor(props) {
     super(props);
+/*
+mode 
 
+wait : 시작전 -> 재생버튼 렌더링
+runnging : 러닝 중 -> 멈춤 버튼 렌더링
+
+
+*/
   
     this.state = {
+      mode : 'wait', 
+      kcal : 0,
       latitude: LATITUDE,
       longitude: LONGITUDE,
       routeCoordinates: [],
-      distanceTravelled: 0,
+      distanceTravelled: 0, // 이동한 거리 
       prevLatLng: {},
       coordinate: new AnimatedRegion({
        latitude: LATITUDE,
        longitude: LONGITUDE,
        latitudeDelta: LATITUDE_DELTA,
        longitudeDelta: LONGITUDE_DELTA,
-      })
+      }),
+      trashLocations: [{
+        latitude: 37.78825,
+        longitude: -122.4324,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      },{
+        latitude: 37.80825,
+        longitude: -122.4324,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      }],
     };
   }
 
+  changeMode = mode =>{ // 버튼 클릭시 바뀌어질 모드.
+    this.setState = {
+      mode : mode,
+    }
+  }
+  getIcon = mode =>{
+
+    if(mode ==='wait'){ //대기중
+      return <ImageBtn changeMode={this.changeMode} type='wait'/>;
+      
+    }
+    else if(mode ==='running ') { //러닝중
+      return <ImageBtn changeMode={this.changeMode} type='running'/>;
+
+    }
+    
+  }
   calcDistance = newLatLng => {
     const { prevLatLng } = this.state;
     return haversine(prevLatLng, newLatLng) || 0;
   };
+
+  calcKcal = distanceDelta=>{
+    // 이동한 거리를 이용해 kcal 계산해주는 함수.
+  }
   getMapRegion = () => ({
     latitude: this.state.latitude,
     longitude: this.state.longitude,
@@ -69,6 +112,7 @@ class PloggingScreen extends Component{
            routeCoordinates: routeCoordinates.concat([newCoordinate]),
            distanceTravelled:
            distanceTravelled + this.calcDistance(newCoordinate),
+           //kcal: kcal+ this.calcKcal(this.state.distanceTravelled),
            prevLatLng: newCoordinate
          });
        },
@@ -79,14 +123,21 @@ class PloggingScreen extends Component{
   
   render(){
     return  <View style={styles.map}>
-        
+        <Label name={'거리(km)'} value={this.state.distanceTravelled.toFixed(3)}/>
+
+        {/** <Label name={'칼로리'} value={this.state.kcal}/> */}
+       
+
   <MapView
   style={styles.map}
   showUserLocation
   followUserLocation
   loadingEnabled
   region={this.getMapRegion()}
+  showsUserLocation
+  tintColor='red'
 >
+
 <Polyline coordinates={this.state.routeCoordinates} strokeWidth={5}  />
   
 <MarkerAnimated
@@ -102,10 +153,17 @@ class PloggingScreen extends Component{
         coordinate={this.state.coordinate}
       />
 
-    
+
+{/*쓰레기통 위치*/this.state.trashLocations.map((location,idx)=><Marker
+  key={idx}
+  coordinate={location}
+  title={'쓰레기통 위치'}
+  description={'쓰레기통 위치'}
+/>)}
+
 </MapView>
 
-   
+ 
     </View>;
   }
 }
