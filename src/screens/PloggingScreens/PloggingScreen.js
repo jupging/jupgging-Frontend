@@ -1,104 +1,115 @@
-import React, { useState, useEffect,useLayoutEffect } from 'react';
+import React, { useState, useEffect,useLayoutEffect,Component } from 'react';
 import { Platform, Text, View, StyleSheet,Dimensions,Image } from 'react-native';
 import * as Location from 'expo-location';
-import MapView,{Marker} from 'react-native-maps';
+import MapView,{Marker,AnimatedRegion,Polyline,MarkerAnimated} from 'react-native-maps';
 import Icon from '../../images/Icon';
-function PloggingScreen() {
-  const [location, setLocation] = useState(null);
- 
+import { NavigationRouteContext } from '@react-navigation/native';
+import {LATITUDE,LONGITUDE,LATITUDE_DELTA,LONGITUDE_DELTA}from '../../constants/location';
+import haversine from 'haversine';
 
-  useLayoutEffect(() => {
-    (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        setErrorMsg('Permission to access location was denied');
-        return;
-      }
 
-      let location = await Location.getCurrentPositionAsync({});
+class PloggingScreen extends Component{
 
-      setLocation({latitude:location.coords.latitude,longitude:location.coords.longitude,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,})
-    console.log(location);
-    })();
+  
+  constructor(props) {
+    super(props);
 
-  }, []);
+  
+    this.state = {
+      latitude: LATITUDE,
+      longitude: LONGITUDE,
+      routeCoordinates: [],
+      distanceTravelled: 0,
+      prevLatLng: {},
+      coordinate: new AnimatedRegion({
+       latitude: LATITUDE,
+       longitude: LONGITUDE,
+       latitudeDelta: LATITUDE_DELTA,
+       longitudeDelta: LONGITUDE_DELTA,
+      })
+    };
+  }
 
- 
-  return (
-    <View style={styles.map}>
+  calcDistance = newLatLng => {
+    const { prevLatLng } = this.state;
+    return haversine(prevLatLng, newLatLng) || 0;
+  };
+  getMapRegion = () => ({
+    latitude: this.state.latitude,
+    longitude: this.state.longitude,
+    latitudeDelta: LATITUDE_DELTA,
+    longitudeDelta: LONGITUDE_DELTA
+  });
+  componentDidMount() {
+
+    
+    Location.watchPositionAsync({ accuracy: Location.Accuracy.Balanced, timeInterval: 300, distanceInterval: 1 },
+      position => {
+        const { coordinate, routeCoordinates, distanceTravelled } =   this.state;
+        const { latitude, longitude } = position.coords;
         
-        <MapView
-        initialRegion={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          }}
+        const newCoordinate = {
+          latitude,
+          longitude
+        };
+        if (Platform.OS === "android") {
+          if (this.marker) {
+            this.marker.animateMarkerToCoordinate(
+              newCoordinate,
+              500
+            );
+           }
+         } else {
+           coordinate.timing(newCoordinate).start();
+         }
+         
+         this.setState({
+           latitude,
+           longitude,
+           routeCoordinates: routeCoordinates.concat([newCoordinate]),
+           distanceTravelled:
+           distanceTravelled + this.calcDistance(newCoordinate),
+           prevLatLng: newCoordinate
+         });
+       },
+       error => console.log(error),
+       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+    );
+  }
+  
+  render(){
+    return  <View style={styles.map}>
+        
+  <MapView
   style={styles.map}
   showUserLocation
   followUserLocation
   loadingEnabled
-  region={location}
+  region={this.getMapRegion()}
 >
-    <Marker
-      coordinate={{
-        latitude: 37.78825,
-        longitude: -122.4324,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
-      }}
-      title={'쓰레기통 위치'}
-      description={'쓰레기통 위치'}
-    />
-
-    <Marker
-      coordinate={{
-        latitude: 37.4515580,
-        longitude: 126.7975343,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
-      }}
-      title={'쓰레기통 위치'}
-      description={'쓰레기통 위치'}
-    />
-
-<Marker
-      coordinate={{
-        latitude: 37.4515580,
-        longitude: 126.7675343,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
-      }}
-      title={'쓰레기통 위치'}
-      description={'쓰레기통 위치'}
-    />
-     <Marker
-      coordinate={{
-        latitude: 37.4715580,
-        longitude: 126.7975343,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
-      }}
-      title={'쓰레기통 위치'}
-      description={'쓰레기통 위치'}
-    />
+<Polyline coordinates={this.state.routeCoordinates} strokeWidth={5}  />
+  
+<MarkerAnimated
+    ref={marker => {
+      this.marker = marker;
+    }}
+    coordinate={this.state.coordinate}
+  /> 
 
 
-    {/**<Marker
-      coordinate={location}
-      title={'쓰레기통 위치'}
-      description={'쓰레기통 위치'}
-    /> */}
-    
+<MarkerAnimated
+        ref={marker => { this.marker = marker }}
+        coordinate={this.state.coordinate}
+      />
+
     
 </MapView>
 
    
-    </View>
-  );
+    </View>;
+  }
 }
+
 
 const styles = StyleSheet.create({
   container: {
