@@ -4,6 +4,8 @@ import Theme from '../../styles/Theme';
 import { TextInput,Button,SafeAreaView } from 'react-native';
 import { useFonts } from 'expo-font';
 import ImageSelector from '../../components/ImageSelector';
+import axios from 'axios';
+import { BASE_URL } from "../../constants/Api";
 
 const Container = styled.SafeAreaView`
 flex : 1;
@@ -62,11 +64,40 @@ function SigninScreen({route,navigation}) {
     const [nickname,setNickname]=useState('')
     const [disabled,setDisabled]=useState(true);
 
+    const token = route.params.token;
+
+    console.log(token+'***');
     const handleTextChange=(text)=>{
         setNickname(text); 
         if(text.length>1) setDisabled(false);
-        else setDisabled(true);}
+        else setDisabled(true); 
+    }
 
+
+const submit =()=>{
+
+    axios.put(`${BASE_URL}/auth/sign-up`,{nickName:nickname,profile:imageUri},{headers: {
+        "X-ACCESS-TOKEN":  token //the token is a variable which holds the token
+       } })
+        .then(function (response) {
+
+            console.log(response.data);
+          if(response.data.isSuccess){
+           
+            console.log(response.data);
+            navigation.navigate('Tutorial')
+          
+          }
+          else{
+              console.log('등록 요청 실패')
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+        
+
+}
     if(!loaded)
     return null;
 
@@ -92,7 +123,7 @@ function SigninScreen({route,navigation}) {
   onChangeText={handleTextChange}  />
   </TextInputContainer>
   <ButtonContainer>
-  <Button title='시작하기' color={Theme.mainColor} disabled={disabled} onPress={()=>navigation.navigate('Tutorial')}/>
+  <Button title='시작하기' color={Theme.mainColor} disabled={disabled} onPress={submit}/>
   </ButtonContainer>
   </Container>
     );

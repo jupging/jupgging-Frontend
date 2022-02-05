@@ -59,7 +59,7 @@ const TutorialScreen = ({navigation})=>{
        
         <MyButton onPress={()=>navigation.navigate('Home')} title="플로깅시작하기" bgColor={Theme.subColor} txtColor={'white'}/>
 
-        <Image source={Icon.Plogging} style={{width:400,height:400,}}/>
+        <Image source={Icon.RunningTrack} style={{width:400,height:400,marginTop:50}}/>
         </Container>)
 }
 

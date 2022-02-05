@@ -7,6 +7,7 @@ import ChallengeList from "../../constants/ChallengeList";
 import LevelCard from "../../components/LevelCard";
 import Theme from "../../styles/Theme";
 import LottieView from "lottie-react-native";
+import MyButton from "../../components/MyButton";
 const Container = styled.View`
 flex : 1;
 justify-content : flex-start;
@@ -134,14 +135,14 @@ const MyPageScreen = ({navigation})=>{
         <ProfileAvatar size='lg'/>
         <StyledText>{userID?userID:'GUEST'}</StyledText>
         <Medium>{self_introduction}</Medium>
-        <Button title="프로필 편집" color={'black'} onPress={()=>navigation.navigate('MyPageEdit')}/*본인일때만 보이기*/ />
+        <MyButton title="프로필 편집" txtColor={'white'} bgColor={Theme.mintColor} onPress={()=>navigation.navigate('MyPageEdit')}/*본인일때만 보이기*/ />
           <Line/>
         </SubContainer>
- 
+
         <StyledText>플로깅 레벨
           </StyledText>
        <LevelCard times={times}  /*Level 카드로 몇번 뛰었는지 전달*//>
-
+      
           <StyledText>챌린지</StyledText>
          
           {ChallengeList.map

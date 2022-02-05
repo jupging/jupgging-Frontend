@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableWithoutFeedback,Image} from "react-native";
+import {TouchableOpacity,Image,Linking} from "react-native";
 import { withNavigation } from "react-navigation";
 
 import styled from "styled-components";
@@ -23,42 +23,56 @@ const Name = styled.Text`
   margin-left: 10px;
   margin-bottom: 10px;
   max-width:150px;
-  
+  flex:0.8;
 `;
 
 const Price = styled.Text`
   font-weight: 600;
   margin-left: 10px;
   color: ${Colors.blackColor};
+ 
 `;
 const ContentContainer=styled.View`
+
 background-color: white;
 border-bottom-left-radius: 15px;
 border-bottom-right-radius: 15px;
+height: 60px;
 `
 const ProductCard = ({item}) => {
-    const { imgSrc, name, price, navigation }=item;
+  /*
+  "shopList" : [
+			{
+				"productId" : Long,
+				"Image" : String,
+				"title" : String,
+				"price" : Int,
+				"link" : String
+			}
+		]
+    */
+    const { productId,image, title,price, link }=item;
 
     const image_width =parseInt(Layout.window.width / 2 - 30);
     const image_height =parseInt(Layout.window.width / 2 - 30);
     return(
-  <TouchableWithoutFeedback onPress={() => alert('click')}>
+  <TouchableOpacity onPress={() => Linking.openURL(link)}>
     <Container>
       <ImageContainer>
       <Image
         style={{borderTopLeftRadius:15 ,borderTopRightRadius:15,width:image_width,height:image_height}}
         source={{
-          uri: imgSrc,
+          uri: image,
         }}
       />
     
       </ImageContainer>
       <ContentContainer>
-      <Name>{name}</Name>
-      <Price>{`$${price}`}</Price>
+      <Name>{title}</Name>
+      <Price>{`$ ${price}`}</Price>
       </ContentContainer>
     </Container>
-  </TouchableWithoutFeedback>
+  </TouchableOpacity>
     )};
 /*
 ProductCard.propTypes = {
