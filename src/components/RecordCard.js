@@ -30,7 +30,7 @@ max-height : 50px;
 export default function RecordCard({item}) {
       const {thumbnail,id,year,month,day,week,kilometer,kcal,time}=item;
     return <Container>
-        <Image style={styles.image} source={{  uri: thumbnail}}/>
+        <Image style={styles.image} source={{  uri: 'https://postfiles.pstatic.net/MjAyMDExMDdfMTAg/MDAxNjA0NzA5MDMzMzMz.5ibNLzqpXY8PmkzZFFo_0f1sbcFy50cWbIyEWdha0sEg.pMCs8vGDBqU_jl0aC2TWN4ZFVPr0OEay9pMQRCFiSCIg.JPEG.yeunsu0918/1604708942837.jpg?type=w773'}}/>
    
         <View style={styles.conntentContainer}>
         <TouchableOpacity>
