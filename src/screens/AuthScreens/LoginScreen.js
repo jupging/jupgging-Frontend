@@ -9,7 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import AppLoading from 'expo-app-loading';
 import Theme from "../../styles/Theme";
 import axios from 'axios';
-
+import { BASE_URL } from "../../constants/Api";
 const Container = styled.SafeAreaView`
 flex : 1;
 justify-content : center;
@@ -53,6 +53,14 @@ const LoginScreen = ({ navigation }) => {
         NanumBarunGothicUltraLight: require('../../../assets/font/NanumBarunGothicUltraLight.ttf'),
     });
 
+    const storeLoginData =async (userInfo)=>{
+        try{
+              await AsyncStorage.setItem('userInfo',JSON.stringify(userInfo)); 
+               
+           }
+            catch(e){ console.log('유저 토큰 저장 실패'); }
+        } 
+    
   const signInAsync = async () => {
     console.log("LoginScreen.js 6 | loggin in");
     try {
@@ -61,12 +69,49 @@ const LoginScreen = ({ navigation }) => {
         androidClientId: `237516281102-20ua63ld68kq02ohkha3654pgrl53id0.apps.googleusercontent.com`,
       });
 
-      if (type === "success") {
+    if (type === "success") {
         // Then you can use the Google REST API
-        console.log("LoginScreen.js 17 | success, navigating to profile");
-        navigation.navigate("Signin", { user });
+        console.log("LoginScreen.js 17 | success to get google api");
+       console.log(user);
+
+        axios.post(`${BASE_URL}/auth/sign-in`,{email:user.email})
+        .then(function (response) {
+
+            console.log(response.data);
+          if(response.data.isSuccess){
+           
+            console.log(response.data);
+            const result = response.data.result;
+            const userInfo={userId:result.userId,token:result.accessToken};
+
+            //로컬에 토큰과 유저 아이디 저장시키기
+            storeLoginData(userInfo);
+            
+            navigation.navigate("Signin",{token:userInfo.token});
+            /*
+            if(result.new){
+                //회원가입 화면으로
+                navigation.navigate("Signin");
+            }
+            else{
+                // 일반 홈화면으로
+                navigation.navigate("Home");
+            }
+            */
+          
+          }
+          else{
+              console.log('로그인 요청 실패')
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+        
+
+  
       
-      }
+    }
     } catch (error) {
       console.log("LoginScreen.js 19 | error with login", error);
     }
