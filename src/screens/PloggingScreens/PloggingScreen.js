@@ -26,7 +26,7 @@ runnging : 러닝 중 -> 멈춤 버튼 렌더링
   
     this.state = {
       mode : 'wait', 
-      kcal : 0,
+      kcal : 13,
       latitude: LATITUDE,
       longitude: LONGITUDE,
       routeCoordinates: [],
@@ -38,7 +38,7 @@ runnging : 러닝 중 -> 멈춤 버튼 렌더링
        latitudeDelta: LATITUDE_DELTA,
        longitudeDelta: LONGITUDE_DELTA,
       }),
-      trashLocations: [{
+      trashLocations: [{ // 쓰레기통 위치
         latitude: 37.78825,
         longitude: -122.4324,
         latitudeDelta: 0.0922,
@@ -69,7 +69,7 @@ runnging : 러닝 중 -> 멈춤 버튼 렌더링
     }
     
   }
-  calcDistance = newLatLng => {
+  calcDistance = newLatLng => { //거리 계산
     const { prevLatLng } = this.state;
     return haversine(prevLatLng, newLatLng) || 0;
   };
@@ -85,7 +85,7 @@ runnging : 러닝 중 -> 멈춤 버튼 렌더링
   });
   componentDidMount() {
 
-    
+    // 위치 변화 감지
     Location.watchPositionAsync({ accuracy: Location.Accuracy.Balanced, timeInterval: 300, distanceInterval: 1 },
       position => {
         const { coordinate, routeCoordinates, distanceTravelled } =   this.state;
@@ -123,11 +123,13 @@ runnging : 러닝 중 -> 멈춤 버튼 렌더링
   
   render(){
     return  <View style={styles.map}>
+        <View style={{flexDirection:'row',justifyContent:'center'}}>
         <Label name={'거리(km)'} value={this.state.distanceTravelled.toFixed(3)}/>
 
-        {/** <Label name={'칼로리'} value={this.state.kcal}/> */}
+        <Label name={'칼로리'} value={this.state.kcal}/>
+        </View>
        
-
+{this.getIcon()}
   <MapView
   style={styles.map}
   showUserLocation
@@ -136,6 +138,13 @@ runnging : 러닝 중 -> 멈춤 버튼 렌더링
   region={this.getMapRegion()}
   showsUserLocation
   tintColor='red'
+  maxZoomLevel={20}
+  onPress={(e)=>{
+    console.log(e.nativeEvent.coordinate)
+    const newTrashLocation=e.nativeEvent.coordinate;
+    const trashLocations =this.state.trashLocations; //기존 쓰레기통 위치들 
+    this.setState({trashLocations:[...trashLocations,newTrashLocation]})
+    }}
 >
 
 <Polyline coordinates={this.state.routeCoordinates} strokeWidth={5}  />
