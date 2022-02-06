@@ -1,7 +1,7 @@
 import React, { useState, useEffect,useLayoutEffect,Component } from 'react';
 import { Platform, Text, View, StyleSheet,Dimensions,Image } from 'react-native';
 import * as Location from 'expo-location';
-import MapView,{Marker,AnimatedRegion,Polyline,MarkerAnimated,Circle} from 'react-native-maps';
+import MapView,{Marker,AnimatedRegion,Polyline,MarkerAnimated} from 'react-native-maps';
 import Icon from '../../images/Icon';
 import { NavigationRouteContext } from '@react-navigation/native';
 import {LATITUDE,LONGITUDE,LATITUDE_DELTA,LONGITUDE_DELTA}from '../../constants/location';
@@ -9,6 +9,7 @@ import haversine from 'haversine';
 import ImageBtn from '../../components/ImageBtn';
 import Label from '../../components/Label';
 import Theme from '../../styles/Theme'
+import StopWatch from '../../components/StopWatch';
 
 class PloggingScreen extends Component{
 
@@ -103,6 +104,8 @@ runnging : 러닝 중 -> 멈춤 버튼 렌더링
               500
             );
            }
+
+
          } else {
            coordinate.timing(newCoordinate).start();
          }
@@ -112,18 +115,19 @@ runnging : 러닝 중 -> 멈춤 버튼 렌더링
            longitude,
            routeCoordinates: routeCoordinates.concat([newCoordinate]),
            distanceTravelled:distanceTravelled + this.calcDistance(newCoordinate),
-           kcal: kcal+ this.calcKcal(distanceTravelled),
+           kcal:this.calcKcal(distanceTravelled),
            prevLatLng: newCoordinate
          });
-       },
-       error => console.log(error),
-       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+      }
     );
+
   }
   
   render(){
     return  <View style={styles.map}>
+       <StopWatch sec={70} />
         <View style={{flexDirection:'row',justifyContent:'center'}}>
+         
         <Label name={'거리(km)'} value={this.state.distanceTravelled.toFixed(3)}/>
         <Image source={Icon.Stop} style={{width:100,height:100,tintColor:'black'}} />
         <Label name={'칼로리'} value={this.state.kcal.toFixed(3)}/>
@@ -187,6 +191,7 @@ const styles = StyleSheet.create({
   map: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
+    alignItems:'center'
   },
 });
 
